@@ -23,7 +23,9 @@ Merge `dsmbootcamp.cem_celik.content_category` T
 Using `dsmbootcamp.cem_celik.content_category_20201222_00_59` S 
 on T.id = S.id
 WHEN MATCHED AND T.cdc_date != S.cdc_date then
-    Update set T.cdc_date = S.cdc_date
+    Update set T.cdc_date = S.cdc_date, T.category = S.category
+WHEN MATCHED AND T.category != S.category then
+    Update set T.category = S.category
 WHEN NOT MATCHED BY TARGET then
     insert (cdc_date, is_deleted, id, category) VALUES(S.cdc_date, S.is_deleted, S.id, S.category)
 WHEN NOT MATCHED BY SOURCE then
