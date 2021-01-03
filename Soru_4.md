@@ -42,7 +42,7 @@ WITH table2 as (
 Select *
 from 
 (select *,farm_fingerprint(to_json_string(t1)) as _hash1
-from `dsmbootcamp.cem_celik.content_category t1) table1
+from `dsmbootcamp.cem_celik.content_category` t1) table1
 right outer join table2
 on table1.id = table2.id
 where table1._hash1 <> table2._hash2;
